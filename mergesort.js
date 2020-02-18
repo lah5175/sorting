@@ -63,16 +63,3 @@ function mergeSort(array, func) {
 
   return array;
 }
-
-const arr = [{ age: 4 }, { age: 8 }, { age: 2 }, { age: 9 }];
-function comparator (a, b) {
-  if (a.age < b.age) return -1; // returning `-1` means "a goes before b"
-  if (a.age > b.age) return 1;  // returning  `1` means "b goes before a"
-  return 0; // returning 0 means "a and b are equivalent"
-}
-
-/* mergeSort
-1. Base case - if array only has one element, return that array
-2. otherwise - split array and merge sort each half
-3. Merge combined halves into sorted whole
-*/
