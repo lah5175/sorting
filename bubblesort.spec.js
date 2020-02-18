@@ -19,4 +19,12 @@ describe('Bubble Sort', function(){
   it('swaps the correct number of times', ()=>{
     expect(swap.calls.count()).toEqual(5);
   })
+
+  it('works with a function input', ()=>{
+    expect(bubbleSort([{ age: 4 }, { age: 8 }, { age: 2 }, { age: 9 }], (function comparator (a, b) {
+      if (a.age < b.age) return -1; // returning `-1` means "a goes before b"
+      if (a.age > b.age) return 1;  // returning  `1` means "b goes before a"
+      return 0; // returning 0 means "a and b are equivalent"
+    }))).toEqual([{ age: 2 }, { age: 4 }, { age: 8 }, { age: 9 }])
+  })
 });
