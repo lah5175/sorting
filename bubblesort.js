@@ -8,23 +8,24 @@ function swap(elem1, elem2){
 
 function bubbleSort(array, func){
 
-  let counter = array.length
-  const newArr = [...array];
+  let counter = array.length-1;
+  let newArr = [...array];
 
   while (counter > 0){
     let complete = true;
     for (let i=0; i < counter; i++){
 
       if (func) {
+
         const funcResult = func(newArr[i], newArr[i+1])
         if (funcResult > 0) {
           const result = swap(newArr[i], newArr[i+1])
-          console.log(result)
           newArr[i] = result[0];
           newArr[i+1] = result[1];
           complete = false;
         }
-      } else {
+      }
+      else {
         if (newArr[i] > newArr[i+1]){
           const result = swap(newArr[i], newArr[i+1]);
           newArr[i] = result[0];
@@ -32,8 +33,9 @@ function bubbleSort(array, func){
           complete = false;
         }
       }
+
     }
-    console.log(complete)
+
     if (complete) break;
 
     counter--;
