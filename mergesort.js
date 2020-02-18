@@ -26,7 +26,7 @@ function merge(arr1, arr2, func){
         result = firstElem > secondElem
       }
 
-      if (result){
+      if (result > 0){
         newArr.push(secondElem);
         pointer2++;
       }
@@ -44,7 +44,6 @@ function merge(arr1, arr2, func){
       pointer2++;
     }
   }
-
   return newArr;
 }
 
@@ -55,7 +54,7 @@ function mergeSort(array, func) {
   else {
     const splitArr = split(array);
     const resultArr = splitArr.reduce((arr, elem) =>{
-      arr.push(mergeSort(elem));
+      arr.push(mergeSort(elem, func));
       return arr;
     }, []);
 
@@ -63,6 +62,13 @@ function mergeSort(array, func) {
   }
 
   return array;
+}
+
+const arr = [{ age: 4 }, { age: 8 }, { age: 2 }, { age: 9 }];
+function comparator (a, b) {
+  if (a.age < b.age) return -1; // returning `-1` means "a goes before b"
+  if (a.age > b.age) return 1;  // returning  `1` means "b goes before a"
+  return 0; // returning 0 means "a and b are equivalent"
 }
 
 /* mergeSort
