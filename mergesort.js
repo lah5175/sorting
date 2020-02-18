@@ -39,11 +39,25 @@ function merge(arr1, arr2){
   return newArr;
 }
 
-/*
-1. Checking to see what each pointer value is in each array
-2. Need to check if it actually exists
-3. If both exist, then compare to each other and add the lesser number and move
-  the pointer up
-4 If only one exists, then add that element to the array and move the pointer
-  up
+function mergeSort(array) {
+  if (array.length === 1){
+    return array;
+  }
+  else {
+    const splitArr = split(array);
+    const resultArr = splitArr.reduce((arr, elem) =>{
+      arr.push(mergeSort(elem));
+      return arr;
+    }, []);
+
+    array = merge.apply(null, resultArr);
+  }
+
+  return array;
+}
+
+/* mergeSort
+1. Base case - if array only has one element, return that array
+2. otherwise - split array and merge sort each half
+3. Merge combined halves into sorted whole
 */
