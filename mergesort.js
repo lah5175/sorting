@@ -4,20 +4,29 @@ function split(wholeArray) {
   return [wholeArray.slice(0,splitIdx), wholeArray.slice(splitIdx)];
 }
 
-function merge(arr1, arr2){
+function merge(arr1, arr2, func){
   const newArr = [];
 
   let pointer1 = 0;
   let pointer2 = 0;
   let firstElem;
   let secondElem;
+  let result;
+
 
   while (pointer1 < arr1.length || pointer2 < arr2.length){
     firstElem = pointer1 < arr1.length ? arr1[pointer1] : null;
     secondElem = pointer2 < arr2.length ? arr2[pointer2] : null;
 
     if (firstElem && secondElem){
-      if (firstElem > secondElem){
+      if (func){
+        result = func(firstElem, secondElem);
+      }
+      else {
+        result = firstElem > secondElem
+      }
+
+      if (result){
         newArr.push(secondElem);
         pointer2++;
       }
@@ -39,7 +48,7 @@ function merge(arr1, arr2){
   return newArr;
 }
 
-function mergeSort(array) {
+function mergeSort(array, func) {
   if (array.length === 1){
     return array;
   }
@@ -50,7 +59,7 @@ function mergeSort(array) {
       return arr;
     }, []);
 
-    array = merge.apply(null, resultArr);
+    array = merge.apply(null, [...resultArr, func]);
   }
 
   return array;
